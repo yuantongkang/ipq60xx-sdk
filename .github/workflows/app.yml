@@ -54,14 +54,14 @@ jobs:
          ./scripts/feeds update -a
          ./scripts/feeds install -a
          make package/luci-app-openclash/luci-app-openclash/compile V=99
-         sudo cp /opt/ipq600/bin/* /opt/images/
+         sudo cp -r /opt/ipq600/bin/* /opt/images/
          
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
       with:
         name: Padavan-packages
-        path: /opt/images
+        path: /opt/ipq6000/bin
 
     - name: Upload firmware to WeTransfer
       run: |
