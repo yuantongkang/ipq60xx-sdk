@@ -34,20 +34,13 @@ jobs:
  
     - name: Build Firmware
       run: |
-         git clone -b stable --depth=1 https://github.com/monw/asuswrt-xiaomi.git /opt/asus
-         mkdir -p /opt/brcm/
-         mkdir -p /opt/buildroot-gcc463/
+         git clone --depth=1 https://github.com/monw/openwrt-8devices.git /opt/ipq6000
+  
          mkdir -p /opt/images/
-         cd /opt/asus/tools
-         sudo tar -jxvf buildroot-gcc463_32bits.tar.bz2
-         sudo cp -r /opt/asus/tools/brcm/* /opt/brcm/
-         sudo cp -r /opt/asus/tools/buildroot-gcc463/* /opt/buildroot-gcc463/
-         export PATH=/opt/brcm/hndtools-mipsel-linux/bin:$PATH
-         export PATH=/opt/brcm/hndtools-mipsel-uclibc/bin:$PATH
-         export PATH=/opt/buildroot-gcc463/bin:$PATH
-         cd /opt/asus/release/src-ra-5010
-         make rt-mir4a
-         sudo cp /opt/asus/release/src-ra-5010/image/*.trx /opt/images/
+         cd /opt/ipq6000
+         cp configs/
+         make package/luci-app-openclash/luci-app-openclash/compile V=s
+         sudo cp /opt/ipq600/bin/* /opt/images/
          
     - name : Upload packages
       uses: actions/upload-artifact@master
