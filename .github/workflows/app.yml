@@ -26,11 +26,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update
-        sudo apt-get -y install autoconf automake bash bison bzip2 intltool autopoint \
-        diffutils file flex g++ gawk gcc-multilib gettext gperf groff-base \
-        libncurses-dev libexpat1-dev libslang2 libssl-dev libtool libxml-parser-perl make \
-        patch perl pkg-config python sed shtool tar texinfo unzip zlib1g zlib1g-dev
-        sudo apt-get install lib32z1-dev lib32stdc++6
+        sudo apt-get -y install git git-doc subversion build-essential flex wget gawk unzip man file python2.7 zlib1g-dev libssl-dev libncurses5-dev ocaml-nox
  
     - name: Build Firmware
       run: |
@@ -38,7 +34,8 @@ jobs:
   
          mkdir -p /opt/images/
          cd /opt/ipq6000
-         cp configs/
+         cp configs/8dev_mango_open .config
+         
          make package/luci-app-openclash/luci-app-openclash/compile V=s
          sudo cp /opt/ipq600/bin/* /opt/images/
          
