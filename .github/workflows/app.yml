@@ -1,4 +1,4 @@
-name: Build ASUSWRT
+name: Build openclash for ax1800
 
 on: 
   release:
@@ -37,8 +37,8 @@ jobs:
          cp configs/8dev_mango_open .config
          mkdir build_dir
          mkdir staging_dir
-         cp /opt/sdk/build_dir/* build_dir
-         cp /opt/sdk/staging_dir/* staging_dir
+         cp -r /opt/sdk/build_dir/* build_dir
+         cp -r /opt/sdk/staging_dir/* staging_dir
          mkdir package/luci-app-openclash
          cd package/luci-app-openclash
          git init
