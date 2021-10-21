@@ -30,8 +30,7 @@ jobs:
  
     - name: Build Firmware
       run: |
-         git clone --depth=1 https://github.com/monw/openwrt-8devices.git /opt/ipq6000
-  
+         git clone -b ipq60xx --depth=1 https://github.com/monw/openwrt-8devices.git /opt/ipq6000
          mkdir -p /opt/images/
          cd /opt/ipq6000
          cp configs/8dev_mango_open .config
