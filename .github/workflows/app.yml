@@ -31,14 +31,14 @@ jobs:
     - name: Build Firmware
       run: |
          git clone -b ipq60xx --depth=1 https://github.com/monw/openwrt-8devices.git /opt/ipq6000
-         #git clone -b master --depth=1 https://github.com/monw/openwrt-sdk-ipq_ipq60xx-qsdk11.git /opt/sdk
+         git clone -b master --depth=1 https://github.com/monw/openwrt-sdk-ipq_ipq60xx-qsdk11.git /opt/sdk
          mkdir -p /opt/images/
          cd /opt/ipq6000
-         #cp configs/8dev_mango_open .config
-         #mkdir build_dir
-         #mkdir staging_dir
-         #cp -r /opt/sdk/build_dir/* build_dir
-         #cp -r /opt/sdk/staging_dir/* staging_dir
+         cp configs/8dev_mango_open .config
+         mkdir build_dir
+         mkdir staging_dir
+         cp -r /opt/sdk/build_dir/* build_dir
+         cp -r /opt/sdk/staging_dir/* staging_dir
          mkdir package/luci-app-openclash
          cd package/luci-app-openclash
          git init
@@ -51,7 +51,7 @@ jobs:
          make && sudo make install
          popd
          cd ../..
-         ./quick_start.sh 8dev_mango_open  -c
+         make  package/luci-app-openclash/luci-app-openclash/compile V=s
          sudo cp -r /opt/ipq6000/bin/* /opt/images/
          
     - name : Upload packages
