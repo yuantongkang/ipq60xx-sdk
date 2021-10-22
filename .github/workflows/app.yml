@@ -28,7 +28,7 @@ jobs:
         sudo apt-get update
         sudo apt-get -y install git git-doc subversion build-essential flex wget gawk unzip man file python2.7 zlib1g-dev libssl-dev libncurses5-dev ocaml-nox
  
-    - name: Build Firmware
+    - name: prepare Firmware
       run: |
          git clone -b ipq60xx --depth=1 https://github.com/monw/openwrt-8devices.git /opt/ipq6000
          git clone -b master --depth=1 https://github.com/monw/openwrt-sdk-ipq_ipq60xx-qsdk11.git /opt/sdk
@@ -54,8 +54,14 @@ jobs:
          ./scripts/feeds clean -a
          ./scripts/feeds update -a
          ./scripts/feeds install -a
-         make  package/luci-app-openclash/luci-app-openclash/compile V=s
-         sudo cp -r /opt/ipq6000/bin/* /opt/images/
+         
+    - name: SSH connection to Actions
+      uses: P3TERX/ssh2actions@main
+      
+    - name: build Firmware
+      run: |
+        make  package/luci-app-openclash/luci-app-openclash/compile V=s
+        sudo cp -r /opt/ipq6000/bin/* /opt/images/
          
     - name : Upload packages
       uses: actions/upload-artifact@master
