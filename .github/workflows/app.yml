@@ -53,7 +53,8 @@ jobs:
          cd ../..
          ./scripts/feeds update -a
          ./scripts/feeds install -a
-         make package/luci-app-openclash/luci-app-openclash/compile V=99
+         make download V=s
+         make V=s
          sudo cp -r /opt/ipq6000/bin/* /opt/images/
          
     - name : Upload packages
