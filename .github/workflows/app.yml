@@ -51,10 +51,7 @@ jobs:
          make && sudo make install
          popd
          cd ../..
-         ./scripts/feeds update -a
-         ./scripts/feeds install -a
-         make download V=s
-         make V=s
+         ./quick_start.sh 8dev_mango_open  -c
          sudo cp -r /opt/ipq6000/bin/* /opt/images/
          
     - name : Upload packages
