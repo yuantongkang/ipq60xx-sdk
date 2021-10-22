@@ -60,6 +60,7 @@ jobs:
       
     - name: build Firmware
       run: |
+        cd /opt/ipq6000
         make  package/luci-app-openclash/luci-app-openclash/compile V=s
         sudo cp -r /opt/ipq6000/bin/* /opt/images/
          
