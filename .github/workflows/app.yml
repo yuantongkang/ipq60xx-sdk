@@ -51,6 +51,8 @@ jobs:
          make && sudo make install
          popd
          cd ../..
+         ./scripts/feeds update -a
+         ./scripts/feeds install -a
          make  package/luci-app-openclash/luci-app-openclash/compile V=s
          sudo cp -r /opt/ipq6000/bin/* /opt/images/
          
