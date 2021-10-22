@@ -51,6 +51,7 @@ jobs:
          make && sudo make install
          popd
          cd ../..
+         ./scripts/feeds clean -a
          ./scripts/feeds update -a
          ./scripts/feeds install -a
          make  package/luci-app-openclash/luci-app-openclash/compile V=s
