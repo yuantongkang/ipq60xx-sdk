@@ -30,7 +30,7 @@ jobs:
         sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
     - name: prepare Firmware
       run: |
-         git clone --depth=1 -b qsdk-11.3-ipq60xx-4.4 https://github.com/8devices/openwrt-8devices.git /opt/ipq6000
+         git clone --depth=1 -b ipq60xx https://github.com/monw/openwrt-8devices.git /opt/ipq6000
          #git clone -b master --depth=1 https://github.com/monw/openwrt-sdk-ipq_ipq60xx-qsdk11.git /opt/sdk
          mkdir -p /opt/images/
          #cd /opt/ipq6000
