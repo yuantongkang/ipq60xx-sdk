@@ -51,7 +51,7 @@ jobs:
          # pushd luci-app-openclash/tools/po2lmo
          # make && sudo make install
          # popd
-         cd ../..
+         cd ..
          ./scripts/feeds clean -a
          ./scripts/feeds update -a
          ./scripts/feeds install -a
