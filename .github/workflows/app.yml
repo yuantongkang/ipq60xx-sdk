@@ -63,14 +63,14 @@ jobs:
       run: |
         cd ipq6000
         ./quick_start.sh 8dev_mango_open  -c
-        sudo cp -r bin/* /opt/images/
+        sudo cp -r bin/target/* /opt/images/
          
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
       with:
         name: Padavan-packages
-        path: /opt/ipq6000/bin
+        path: /opt/images
 
     - name: Upload firmware to WeTransfer
       run: |
