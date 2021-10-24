@@ -30,7 +30,7 @@ jobs:
         sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
     - name: prepare Firmware
       run: |
-         git clone --depth=1 -b ipq60xx https://github.com/monw/openwrt-8devices.git ipq6000
+         git clone --depth=1 https://github.com/monw/imagebuilder.git ipq6000
          #git clone -b master --depth=1 https://github.com/monw/openwrt-sdk-ipq_ipq60xx-qsdk11.git /opt/sdk
          mkdir -p /opt/images/
          #cd /opt/ipq6000
@@ -62,8 +62,8 @@ jobs:
     - name: build Firmware
       run: |
         cd ipq6000
-        ./quick_start.sh 8dev_mango_open  -c
-        sudo cp -r bin/target/* /opt/images/
+        ./gl_image -p ax1800 
+        sudo cp -r imagebuild/3.5/bin/* /opt/images/
          
     - name : Upload packages
       uses: actions/upload-artifact@master
