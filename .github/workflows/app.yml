@@ -64,7 +64,7 @@ jobs:
       run: |
         cd ipq6000
         ./gl_image -p ax1800 
-        sudo cp -r imagebuild/3.5/openwrt-imagebuilder-ipq-ipq60xx-QSDK_Premium_3.5/bin/* /opt/images/
+        sudo cp -r imagebuilder/3.5/openwrt-imagebuilder-ipq-ipq60xx-QSDK_Premium_3.5/bin/* /opt/images/
          
     - name : Upload packages
       uses: actions/upload-artifact@master
