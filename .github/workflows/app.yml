@@ -94,12 +94,14 @@ jobs:
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"
         
-    - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
+    - name: Upload images to Releases
       if: steps.tag.outputs.status == 'success' && !cancelled()
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: svenstaro/upload-release-action@2.2.0
       with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        body_path: release.txt
-        files: /opt/images/*
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: /opt/images/*
+        tag: GL-iNet AX1800
+        overwrite: true
+        file_glob: true  
+        
+
