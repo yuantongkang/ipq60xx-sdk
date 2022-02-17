@@ -32,30 +32,7 @@ jobs:
     - name: prepare Firmware
       run: |
          git clone --depth=1 https://github.com/monw/imagebuilder.git ipq6000
-         #git clone -b master --depth=1 https://github.com/monw/openwrt-sdk-ipq_ipq60xx-qsdk11.git /opt/sdk
          mkdir -p /opt/images/
-         #cd /opt/ipq6000
-         #cp configs/8dev_mango_open .config
-         #mkdir build_dir
-         #mkdir staging_dir
-         #cp -r /opt/sdk/build_dir/* build_dir
-         #cp -r /opt/sdk/staging_dir/* staging_dir
-         #mkdir package/luci-app-openclash
-         #cd package
-         #git clone https://github.com/fw876/helloworld.git
-         #git init
-         # git remote add -f origin https://github.com/vernesong/OpenClash.git
-         # git config core.sparsecheckout true
-         # echo "luci-app-openclash" >> .git/info/sparse-checkout
-         # git pull --depth 1 origin master
-         # git branch --set-upstream-to=origin/master master
-         # pushd luci-app-openclash/tools/po2lmo
-         # make && sudo make install
-         # popd
-         #cd ..
-         #./scripts/feeds clean -a
-         #./scripts/feeds update -a
-         #./scripts/feeds install -a
          
     #- name: SSH connection to Actions
     #  uses: P3TERX/ssh2actions@main
@@ -86,16 +63,7 @@ jobs:
         #./transfer cow --block 2621440 -s -p 64 --no-progress /opt/images 2>&1 | tee cowtransfer.log
         #echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
         
-    - name: Generate release tag
-      id: tag
-      run: |
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
-        touch release.txt
-        [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
-        echo "::set-output name=status::success"
-        
     - name: Upload images to Releases
-      if: steps.tag.outputs.status == 'success' && !cancelled()
       uses: svenstaro/upload-release-action@2.2.0
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
