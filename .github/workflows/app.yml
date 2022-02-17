@@ -17,6 +17,8 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     if: github.event.repository.owner.id == github.event.sender.id
+    env:
+      images_dir: /opt/images
 
     steps:
     - name: Checkout
@@ -64,10 +66,10 @@ jobs:
         #echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
         
     - name: Upload images to Releases
-      uses: svenstaro/upload-release-action@2.2.0
+      uses: svenstaro/upload-release-action@2.2.1
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: /opt/images/*
+        file: ${{ env.images_dir }}/*.img
         tag: GL.iNet-AX1800
         overwrite: true
 
