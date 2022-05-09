@@ -42,8 +42,8 @@ jobs:
     - name: build Firmware
       run: |
         cd ipq6000
-        ./gl_image -p ax1800 -e "luci-app-openclash"
-        #./gl_image -p sft1200
+        #./gl_image -p ax1800 -e "luci-app-openclash"
+        ./gl_image -p sft1200
         sudo cp -r bin/* /opt/images/
          
     - name : Upload packages
