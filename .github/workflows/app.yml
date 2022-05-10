@@ -63,7 +63,7 @@ jobs:
       uses: svenstaro/upload-release-action@2.2.1
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: /opt/images/
+        file: /opt/images/*
         tag: GL.iNet-SFT1200
         overwrite: true
 
