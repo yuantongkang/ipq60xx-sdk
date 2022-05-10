@@ -65,7 +65,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: SFT-1200
-        files: /opt/images/*
+        files: /opt/images/*.tar
 
         
 
