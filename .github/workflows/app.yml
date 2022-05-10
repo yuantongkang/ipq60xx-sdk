@@ -51,25 +51,19 @@ jobs:
       if: always()
       with:
         name: Padavan-packages
-        path: /opt/images
+        path: /opt/images/
 
     - name: Upload firmware to WeTransfer
       run: |
         curl -fsSL git.io/file-transfer | sh
         ./transfer wet -s -p 16 --no-progress /opt/images 2>&1 | tee wetransfer.log
-        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
-        
-   # - name: Upload firmware to cowtransfer
-      #run: |
-       # curl -fsSL git.io/file-transfer | sh
-        #./transfer cow --block 2621440 -s -p 64 --no-progress /opt/images 2>&1 | tee cowtransfer.log
-        #echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-        
+        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"        
+    
     - name: Upload images to Releases
       uses: svenstaro/upload-release-action@2.2.1
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: /opt/images
+        file: /opt/images/
         tag: GL.iNet-SFT1200
         overwrite: true
 
