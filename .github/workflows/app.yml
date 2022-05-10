@@ -59,13 +59,13 @@ jobs:
         ./transfer wet -s -p 16 --no-progress /opt/images 2>&1 | tee wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"        
     
-    - name: Upload images to Releases
-      uses: svenstaro/upload-release-action@2.2.1
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: /opt/images/*.tar
-        tag: GL.iNet-SFT1200
-        overwrite: true
+        tag_name: SFT-1200
+        files: /opt/images/*
 
         
 
